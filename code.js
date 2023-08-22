@@ -25,36 +25,27 @@ function playRound(playerCaseSensitive, computerSelection) {
     
     if (playerCaseSensitive == "rock" && computerSelection =="paper") {
         computerWin += 1;
-        return "You lose! Paper beats rock!"
+        
     }
     else if (playerCaseSensitive == "rock" && computerSelection =="scissor") {
         playerWin +=1
-        return "You win! Rock beats scissor!"
-    }
-    else if (playerCaseSensitive =="rock" && computerSelection =="rock") {
-        return "It is a tie!"
+        
     }
     else if (playerCaseSensitive == "paper" && computerSelection == "rock") {
         playerWin +=1
-        return "You win! Paper beats rock!"
+        
     }
     else if (playerCaseSensitive =="paper" && computerSelection =="scissor") {
         computerWin +=1
-        return "You lose! Scissor beats paper!"
-    }
-    else if (playerCaseSensitive =="paper" && computerSelection =="paper") {
-        return "It's a tie!"
+        
     }
     else if (playerCaseSensitive=="scissor" && computerSelection=="rock") {
         computerWin +=1
-        return "You lose! Rock beats scissor!"
+        
     }
     else if (playerCaseSensitive=="scissor" && computerSelection=="paper") {
         playerWin +=1
-        return "You win! Scissor beats paper!"
-    }
-    else if (playerCaseSensitive=="scissor" && computerSelection=="scissor") {
-        return "It's a tie!"
+        
     }
     
 
@@ -65,14 +56,24 @@ function game(input) {
     let computerSelection = getComputerChoice();
     console.log(playRound(input, computerSelection))
     
-    if (playerWin > computerWin) {
-        console.log("You win!")
+    const scores = document.querySelector('#scores')
+    const para = document.createElement('p')
+    para.classList.add('content')
+    para.textContent = 'Player Score: ' + playerWin + '\n' + 'Computer Score: ' + computerWin
+    scores.appendChild(para);
+    if (playerWin === 5) {
+        const h1 = document.createElement('h1');
+        h1.textContent = "YOU WIN"
+        scores.appendChild(h1);
+        playerWin = 0;
+        computerWin =0;
     }
-    else if (computerWin > playerWin) {
-        console.log("You lost!")
-    }
-    else {
-        console.log("It's a tie!")
+    else if (computerWin === 5) {
+        const h1 = document.createElement('h1')
+        h1.textContent = "You lost."
+        scores.appendChild(h1);
+        playerWin =0;
+        computerWin =0;
     }
 
 }
@@ -92,6 +93,8 @@ paperButton.addEventListener("click", () => {
 scissorButton.addEventListener("click", () => {
     game("scissor");
 });
+
+
 
 
 
