@@ -61,14 +61,10 @@ function playRound(playerCaseSensitive, computerSelection) {
     
 }
 
-function game() {
-
-    for (let i =1; i <=5; i++) {
-        let playerSelection = prompt("Rock, Paper, or Scissor?")
-        let playerCaseSensitive = playerSelection.toLowerCase();
-        let computerSelection = getComputerChoice();
-        console.log(playRound(playerCaseSensitive, computerSelection))
-    }
+function game(input) {
+    let computerSelection = getComputerChoice();
+    console.log(playRound(input, computerSelection))
+    
     if (playerWin > computerWin) {
         console.log("You win!")
     }
@@ -80,8 +76,24 @@ function game() {
     }
 
 }
+const rockButton = document.getElementById("Rock")
+const paperButton = document.getElementById("Paper")
+const scissorButton = document.getElementById("Scissor")
 
-game();
+
+
+
+rockButton.addEventListener("click", () => {
+    game("rock");
+});
+paperButton.addEventListener("click", () => {
+    game("paper");
+});
+scissorButton.addEventListener("click", () => {
+    game("scissor");
+});
+
+
 
 
 
