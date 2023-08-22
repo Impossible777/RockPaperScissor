@@ -20,6 +20,7 @@ function getComputerChoice() {
 
 let playerWin = 0;
 let computerWin = 0;
+let count = 0;
 
 function playRound(playerCaseSensitive, computerSelection) {
     
@@ -56,6 +57,13 @@ function game(input) {
     let computerSelection = getComputerChoice();
     console.log(playRound(input, computerSelection))
     
+    if(count ===0) {
+        const element = document.getElementById("scores")
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+        count = 0;
+    }
     const scores = document.querySelector('#scores')
     const para = document.createElement('p')
     para.classList.add('content')
@@ -67,6 +75,7 @@ function game(input) {
         scores.appendChild(h1);
         playerWin = 0;
         computerWin =0;
+ 
     }
     else if (computerWin === 5) {
         const h1 = document.createElement('h1')
@@ -74,9 +83,12 @@ function game(input) {
         scores.appendChild(h1);
         playerWin =0;
         computerWin =0;
-    }
 
+
+
+    }
 }
+
 const rockButton = document.getElementById("Rock")
 const paperButton = document.getElementById("Paper")
 const scissorButton = document.getElementById("Scissor")
